@@ -1,0 +1,60 @@
+:root {
+    --base-border-radius: 0.2rem;
+    --base-border: 1px solid #dddddd;
+    --base-shadow: 0.125rem 0.125rem 0.25rem #0000001A;
+
+    --color-primary: #8b3dff;
+    --color-secondary: #6c757d;
+    --color-success: #198754;
+    --color-info: #0dcaf0;
+    --color-warning: #ffc107;
+    --color-danger: #dc3545;
+    --color-light: #fafafa;
+    --color-dark: #212529;
+    --color-white: #fff;
+    --color-black: #000;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #fafafa;
+}
+body * {
+    color: #212529;
+    font-family: 'Pretendard-Regular', sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+.area {
+    background: #fff;
+    border: var(--base-border);
+    border-radius: var(--base-border-radius);
+    box-shadow: var(--base-shadow);
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

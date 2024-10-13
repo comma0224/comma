@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="nav" class="nav">
+    <div class="container navbar">
+        <a class="brand" href="/">
+            <img class="brand-logo" src="">
+        </a>
+        <button class="navbar-toggler" type="button">
+            <div class="navbar-toggler-icon"></div>
+        </button>
+        <div class="offcanvas">
+            <div class="offcanvas-header">
+                <a class="brand" href="/">
+                    <img class="brand-logo">
+                </a>
+                <button type="button" class="btn-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="offcanvas-body">
+                <ul id="dynamicCategories">
+                    <li>best 쉼터</li>
+                    <li>
+                        <form action="/search" method="get">
+                            <input type="text" name="search" placeholder="검색">
+                            <button type="submit">검색</button>
+                        </form>
+
+                    </li>
+                    <li><a href="/addon-request">쉼터 추가</a></li>
+                    <li><a href="/shelter-request">기능 추가</a></li>
+                    <li><a href="/introduce">소개</a></li>
+                    <li><a href="/introduce">임시-메이플스토리</a></li>
+                </ul>
+            </div>
+            <div class="flex-center">
+                <button th:if="${session.isLoggedIn}" onclick="logout()" class="btn btn-light me-2">로그아웃</button>
+                <button th:if="${session.isLoggedIn}" onclick="navigateToPage('info')" class="btn">내정보</button>
+                <button th:unless="${session.isLoggedIn}" onclick="navigateToPage('login')" class="btn btn-light me-2">로그인</button>
+                <button th:unless="${session.isLoggedIn}" onclick="navigateToPage('signup-terms')" class="btn">회원 가입</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas-backdrop">
+    </div>
+</nav>
+</body>
+</html>

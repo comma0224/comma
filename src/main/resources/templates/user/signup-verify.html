@@ -14,7 +14,11 @@
 
 <body>
 <div layout:fragment="content">
-    index
+    <h1>회원가입 - SNS 본인 인증</h1>
+    <!-- 본인 인증 내용 -->
+    <form th:action="@{/signup-credentials}" method="get">
+        <button type="submit">다음</button>
+    </form>
 </div>
 </body>
 </html>

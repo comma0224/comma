@@ -1,0 +1,123 @@
+.nav {
+    background: var(--color-white);
+    box-shadow: var(--base-shadow);
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+}
+.navbar-toggler {
+    background: var(--color-white);
+    border: var(--base-border);
+    border-radius: var(--base-border-radius);
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+}
+.navbar-toggler:hover {
+    background: var(--color-light);
+}
+
+.navbar-toggler-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(100, 116, 139, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    display: inline-block;
+    margin: 3px;
+}
+
+.offcanvas {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100%;
+    background-color: white;
+    transition: left 0.3s ease-in-out;
+    z-index: 1050;
+}
+
+.offcanvas.show {
+    left: 0;
+}
+
+.offcanvas-header {
+    display: flex;
+    padding: .5rem 1rem;
+    justify-content: space-between;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.brand {
+    width: 2rem;
+    height: 2rem;
+}
+.brand-logo{
+    content: url(/image/brand.png);
+    width: 2rem;
+    height: 2rem;
+}
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+}
+
+.offcanvas-body {
+    padding: 1rem;
+}
+
+.offcanvas-backdrop {
+    background-color: #020617;
+    opacity: 0;
+    width: 0;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1040;
+    transition: opacity 0.3s ease-in;
+}
+
+.offcanvas-backdrop.show {
+    opacity: 0.5;
+    width: 100vw;
+}
+
+#dynamicCategories {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@media (min-width: 992px) {
+    .navbar-toggler {
+        display: none;
+    }
+    .offcanvas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        position: static;
+        flex-direction: row;
+        z-index: auto;
+    }
+    .offcanvas-header {
+        display: none;
+    }
+    .offcanvas-body {
+        flex: 1;
+        padding: 0;
+    }
+    #dynamicCategories {
+        display: flex;
+        justify-content: center;
+    }
+}
