@@ -4,17 +4,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout}">
 
-<!--<th:block layout:fragment="css">-->
-<!--    <link rel="stylesheet" th:href="@{/css/common.css}">-->
-<!--</th:block>-->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/user/login.css}">
+</th:block>
 
-<!--<th:block layout:fragment="script">-->
-<!--    <script th:src="@{/js/common.js}"></script>-->
-<!--</th:block>-->
+<th:block layout:fragment="script">
+    <script th:src="@{/js/user/login.js}"></script>
+</th:block>
 
 <body>
 <div layout:fragment="content">
-    login
+
+    <div class="testBox">
+        login
+    </div>
 </div>
 </body>
 </html>

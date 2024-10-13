@@ -4,18 +4,25 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout}">
 
-<!--<th:block layout:fragment="css">-->
-<!--    <link rel="stylesheet" th:href="@{/css/common.css}">-->
-<!--</th:block>-->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/user/signup-terms.css}">
+</th:block>
 
-<!--<th:block layout:fragment="script">-->
-<!--    <script th:src="@{/js/common.js}"></script>-->
-<!--</th:block>-->
+<th:block layout:fragment="script">
+    <script th:src="@{/js/user/signup-terms.js}"></script>
+</th:block>
 
 <body>
 <div layout:fragment="content">
     <h1>회원가입 - 동의</h1>
     동의 내용
+    <textarea class="testBox2">
+        1. 개인정보 수집 및 이용 동의
+        2. 서비스 이용약관 동의
+        3. 위치기반 서비스 이용약관 동의
+        4. 마케팅 정보 수신 동의
+    </textarea>
+
     <form th:action="@{/signup-verify}" method="get">
         <button type="submit">다음</button>
     </form>
