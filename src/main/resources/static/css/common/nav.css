@@ -2,12 +2,14 @@
     background: var(--color-white);
     box-shadow: var(--base-shadow);
 }
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .5rem;
 }
+
 .navbar-toggler {
     background: var(--color-white);
     border: var(--base-border);
@@ -16,6 +18,7 @@
     height: 2rem;
     padding: 0;
 }
+
 .navbar-toggler:hover {
     background: var(--color-light);
 }

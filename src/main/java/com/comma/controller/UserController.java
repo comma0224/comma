@@ -25,6 +25,7 @@ public class UserController {
     public String signupCredentials() {
         return "user/signup-credentials";
     }
+
     @GetMapping("/signup-complete")
     public String signupComplete() {
         return "user/login";
@@ -34,13 +35,17 @@ public class UserController {
     public String addonRequest() {
         return "user/addon-request";
     }
+
     @GetMapping("/shelter-request")
     public String shelterRequest() {
         return "user/shelter-request";
     }
 
-    @GetMapping("/introduce")
-    public String introduce() {
-        return "user/introduce";
+    @GetMapping("/find-user-info")
+    public String findUserInfo() {
+        return "user/find-user-info";
     }
+
+
+
 }

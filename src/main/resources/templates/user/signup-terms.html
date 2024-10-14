@@ -14,18 +14,22 @@
 
 <body>
 <div layout:fragment="content">
-    <h1>회원가입 - 동의</h1>
-    동의 내용
-    <textarea class="testBox2">
-        1. 개인정보 수집 및 이용 동의
-        2. 서비스 이용약관 동의
-        3. 위치기반 서비스 이용약관 동의
-        4. 마케팅 정보 수신 동의
-    </textarea>
+    <div class="container">
+        <div class="area mt-4 p-4 w-100">
+            <h1 class="page-title">회원가입 - 동의</h1>
+            동의 내용
+            <textarea class="testBox2">
+                1. 개인정보 수집 및 이용 동의
+                2. 서비스 이용약관 동의
+                3. 위치기반 서비스 이용약관 동의
+                4. 마케팅 정보 수신 동의
+            </textarea>
 
-    <form th:action="@{/signup-verify}" method="get">
-        <button type="submit">다음</button>
-    </form>
+            <form th:action="@{/signup-verify}" method="get">
+                <button type="submit">다음</button>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
