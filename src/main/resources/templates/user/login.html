@@ -19,35 +19,32 @@
         <div class="area mt-4 p-4 w-100">
             <h1 class="page-title">로그인</h1>
 
-
             <form id="login">
                 <div class="input-area">
-                    <label for="userId" class="form-label">
+                    <label for="login-userId" class="form-label">
                         아이디
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" id="userId" required>
+                    <input type="text" class="form-control" id="login-userId" required>
                     <div class="feedback"></div>
                 </div>
 
                 <div class="input-area">
-                    <label for="password" class="form-label">
+                    <label for="login-password" class="form-label">
                         비밀번호
                     </label>
-                    <input type="password" class="form-control" id="password" required>
+                    <input type="password" class="form-control" id="login-password" required>
                     <div class="feedback"></div>
                 </div>
             </form>
-                <div class="input-area flex-space-between">
+                <div class="flex-space-between mb-3">
                     <div>
                         <input type="checkbox" id="remember-user-id">
                         <label for="remember-user-id">아이디 기억</label>
                     </div>
                     <a href="/find-user-info">아이디/비밀번호 찾기 -></a>
                 </div>
-
-
-            <div class="flex-space-evenly mb-4">
+            <div class="flex-space-evenly mb-3">
                 <button class="oauth-login oauth-kakao"></button>
                 <button class="oauth-login oauth-naver"></button>
             </div>
