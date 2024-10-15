@@ -5,18 +5,52 @@
       layout:decorate="~{fragments/layout}">
 
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/user/input.css}">
 </th:block>
 
 <th:block layout:fragment="script">
+    <script th:src="@{/js/user/validation.js}"></script>
     <script th:src="@{/js/user/login.js}"></script>
 </th:block>
 
 <body>
 <div layout:fragment="content">
+    <div class="container">
+        <div class="area mt-4 p-4 w-100">
+            <h1 class="page-title">로그인</h1>
 
-    <div class="testBox">
-        login
+            <form id="login">
+                <div class="input-area">
+                    <label for="login-userId" class="form-label">
+                        아이디
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="login-userId" required>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="input-area">
+                    <label for="login-password" class="form-label">
+                        비밀번호
+                    </label>
+                    <input type="password" class="form-control" id="login-password" required>
+                    <div class="feedback"></div>
+                </div>
+            </form>
+                <div class="flex-space-between mb-3">
+                    <div>
+                        <input type="checkbox" id="remember-user-id">
+                        <label for="remember-user-id">아이디 기억</label>
+                    </div>
+                    <a href="/find-user-info">아이디/비밀번호 찾기 -></a>
+                </div>
+            <div class="flex-space-evenly mb-3">
+                <button class="oauth-login oauth-kakao"></button>
+                <button class="oauth-login oauth-naver"></button>
+            </div>
+
+            <button id="login-btn" class="btn w-100">로그인</button>
+        </div>
     </div>
 </div>
 </body>

@@ -13,8 +13,8 @@ public class User {
     @Column(name = "user_key")
     private Long userKey;
 
-    @Column(name = "id", nullable = false)
-    private String id;
+    @Column(name = "user_id", nullable = false)
+    private String userId;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -58,12 +58,12 @@ public class User {
         this.userKey = userKey;
     }
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {

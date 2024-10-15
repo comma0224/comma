@@ -7,6 +7,17 @@
 
 <body>
 <div th:replace="~{fragments/nav :: nav}"></div>
-<th:block layout:fragment="content"></th:block>
+
+<div class="ad-area left">
+    광고 영역 1
+</div>
+
+<th:block layout:fragment="content" class="content"></th:block>
+
+<div class="ad-area right">
+    광고 영역 2
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
