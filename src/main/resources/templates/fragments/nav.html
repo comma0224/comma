@@ -2,9 +2,10 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <body>
 <nav th:fragment="nav" class="nav">
-    <div class="container navbar">
+    <div class="nav-container navbar">
         <a class="brand" href="/">
-            <img class="brand-logo" src="">
+            <img class="brand-symbol" src="">
+            <img class="brand-logo" src="" alt="">
         </a>
         <button class="navbar-toggler" type="button">
             <div class="navbar-toggler-icon"></div>
@@ -18,23 +19,25 @@
             </div>
             <div class="offcanvas-body">
                 <ul id="dynamicCategories">
-                    <li>best 쉼터</li>
+<!--                    <li>best 쉼터</li>-->
                     <li>
-                        <form action="/search" method="get">
-                            <input type="text" name="search" placeholder="검색">
-                            <button type="submit">검색</button>
+                        <form class="search" action="/search" method="get">
+                            <input class="search-box" type="text" name="search" placeholder="검색어를 입력해 주세요.">
+                            <button class="search-icon" type="submit">
+                                <img class=" " src="/image/oauth/dodogi.svg" alt="">
+                            </button>
                         </form>
-
                     </li>
-                    <li><a href="/addon-request">쉼터 추가</a></li>
-                    <li><a href="/shelter-request">기능 추가</a></li>
-                    <li><a href="/introduce">임시-메이플스토리</a></li>
+<!--                    검색바 로그인 / 아이콘 을 제외한 기능을 뺏습니다.-->
+<!--                    <li><a href="/addon-request">쉼터 추가</a></li>-->
+<!--                    <li><a href="/shelter-request">기능 추가</a></li>-->
+<!--                    <li><a href="/introduce">임시-메이플스토리</a></li>-->
                 </ul>
             </div>
             <div class="flex-center">
-                <button th:if="${session.isLoggedIn}" onclick="logout()" class="btn btn-light me-2">로그아웃</button>
+                <button th:if="${session.isLoggedIn}" onclick="logout()" class="btn  me-2">로그아웃</button>
                 <button th:if="${session.isLoggedIn}" onclick="navigateToPage('info')" class="btn">내정보</button>
-                <button th:unless="${session.isLoggedIn}" onclick="navigateToPage('login')" class="btn btn-light me-2">로그인</button>
+                <button th:unless="${session.isLoggedIn}" onclick="navigateToPage('login')" class="btn  me-2">로그인</button>
                 <button th:unless="${session.isLoggedIn}" onclick="navigateToPage('signup-terms')" class="btn">회원 가입</button>
 
             </div>
