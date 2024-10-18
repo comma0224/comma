@@ -59,3 +59,54 @@ function getCookie(name) {
     }
     return null;
 }
+
+// 공통 createBox 생성 함수
+function createBox(message, type) {
+    // div 요소를 생성하고 클래스와 텍스트를 설정합니다.
+    var box = $('<div></div>').addClass('alert alert-' + type).text(message);
+
+    // 닫기 버튼을 생성하고 클래스와 내용을 설정합니다.
+    var closeButton = $('<button></button>').addClass('close-btn').html('&times;');
+
+    // 닫기 버튼 클릭 시 실행될 함수입니다.
+    closeButton.on('click', function() {
+        box.css('opacity', '0');
+        setTimeout(function() {
+            box.remove();
+        }, 500);
+    });
+
+    // 닫기 버튼을 box에 추가합니다.
+    box.append(closeButton);
+
+    // box를 alert-container에 추가합니다.
+    $('#alert-container').append(box);
+
+    // 3초 후에 box를 자동으로 닫습니다.
+    setTimeout(function() {
+        box.css('opacity', '0');
+        setTimeout(function() {
+            box.remove();
+        }, 500);
+    }, 3000);
+}
+
+// alertBox 생성 함수
+function alertBox(message) {
+    createBox(message, 'success');
+}
+
+// errorBox 생성 함수
+function errorBox(message) {
+    createBox(message, 'danger');
+}
+
+// infoBox 생성 함수
+function infoBox(message) {
+    createBox(message, 'info');
+}
+
+// warningBox 생성 함수
+function warningBox(message) {
+    createBox(message, 'warning');
+}

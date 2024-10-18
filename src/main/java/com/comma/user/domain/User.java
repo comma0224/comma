@@ -1,4 +1,4 @@
-package com.comma.domain.user;
+package com.comma.user.domain;
 
 import jakarta.persistence.*;
 

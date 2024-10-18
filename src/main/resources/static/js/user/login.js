@@ -9,14 +9,9 @@ $(document).ready(function() {
     });
 
     $('#login-btn').click(async function() {
-        let form = $('#login');
-        let data = {
-            userId: $('#login-userId').val().trim(),
-            password: $('#login-password').val().trim()
-        };
 
         try {
-            const isValid = await formValidity(form); // Use await inside async function
+            const isValid = await formValidity($('#login'));
             if (!isValid) {
                 errorBox("폼 유효성 검사에 실패했습니다. 입력 내용을 확인해 주세요.");
                 return;
@@ -25,6 +20,11 @@ $(document).ready(function() {
             errorBox(validationError, "폼 유효성 검사 중 오류가 발생했습니다. 다시 시도해 주세요.");
             return;
         }
+
+        let data = {
+            userId: $('#login-userId').val().trim(),
+            password: $('#login-password').val().trim()
+        };
 
         try {
             const response = await sendAjax('/login', data);
