@@ -1,5 +1,10 @@
 $(document).ready(function() {
-    // .click() 메소드 사용
+    const cookieUserId = getCookie("userId");
+    if (cookieUserId) {
+        $('#login-userId').val(cookieUserId);
+        $('#remember-userId').prop('checked', true);
+    }
+
     $('.oauth-kakao').click(function() {
         alert("카카오 로그인(구현 예정)");
     });
@@ -7,6 +12,8 @@ $(document).ready(function() {
     $('.oauth-naver').click(function() {
         alert("네이버 로그인(구현 예정)");
     });
+
+
 
     $('#login-btn').click(async function() {
 
@@ -25,6 +32,12 @@ $(document).ready(function() {
             userId: $('#login-userId').val().trim(),
             password: $('#login-password').val().trim()
         };
+
+        if ($('#remember-userId').is(':checked')) {
+            setCookie("userId", data.userId, 30);
+        } else {
+            setCookie("userId", "", -1); // 쿠키 삭제
+        }
 
 
         sendAjax('/api/user/login', data)
