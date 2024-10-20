@@ -20,34 +20,34 @@ public class User {
     private String password;
 
     @Column(name = "status")
-    private String status;
+    private Integer status = 0;
 
     @Column(name = "point", columnDefinition = "INT DEFAULT 0")
-    private Integer point;
+    private Integer point = 0;
 
     @Column(name = "cash", columnDefinition = "INT DEFAULT 0")
-    private Integer cash;
+    private Integer cash = 0;
 
-    @Column(name = "role", nullable = false)
-    private String role;
+    @Column(name = "role", columnDefinition = "INT DEFAULT 0")
+    private Integer role = 0;
 
     @Column(name = "nickname")
     private String nickname;
 
     @Column(name = "level", columnDefinition = "INT DEFAULT 1")
-    private Integer level;
+    private Integer level = 1;
 
     @Column(name = "exp", columnDefinition = "INT DEFAULT 0")
-    private Integer exp;
+    private Integer exp = 0;
 
     @Column(name = "last_login")
-    private Timestamp lastLogin;
+    private Timestamp lastLogin = new Timestamp(System.currentTimeMillis());
 
     @Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Timestamp createdAt;
+    private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
     @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Timestamp updatedAt;
+    private Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
 
     // Getters and Setters
     public Long getUserKey() {
@@ -74,11 +74,11 @@ public class User {
         this.password = password;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -98,11 +98,11 @@ public class User {
         this.cash = cash;
     }
 
-    public String getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 

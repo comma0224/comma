@@ -10,15 +10,18 @@
 
 <th:block layout:fragment="script">
     <script th:src="@{/js/shelter/shelter.js}"></script>
+    <script th:src="@{/js/shelter/post-list.js}"></script>
+
 </th:block>
 
 <body>
 <div layout:fragment="content">
-    커뮤니티 공지 바로가기 버튼
-    커뮤니티 정보&질문 바로가기 버튼
-    커뮤니티 자유게시판 바로가기 버튼
-    커뮤니티 바로가기 버튼 1~4
-    커뮤니티 바로가기 게시글 리스트 10개
+    <div class="area m-2">
+        태그 리스트  / <button class="location" th:data-location="${shelter.url}+'/write'">글작성</button>
+    </div>
+    <div class="area m-2">
+        게시글 리스트
+    </div>
 </div>
 </body>
 </html>

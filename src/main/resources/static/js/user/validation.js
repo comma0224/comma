@@ -5,13 +5,10 @@ $(document).ready(function() {
     });
 });
 
-// const USERID_PATTERN = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{6,}$/;
-// const PASSWORD_PATTERN = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-// const NICKNAME_PATTERN = /^(?=.*[a-zA-Z가-힣])(?=.*\d)?(?=.{4,}(?:[가-힣]{2}|[a-zA-Z\d]))[a-zA-Z가-힣\d]+$/;
-
-const USERID_PATTERN = /^[a-zA-Z]+[0-9]*$/;
-const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/;
-const NICKNAME_PATTERN = /^[a-zA-Z가-힣\d]+$/;
+const USERID_PATTERN = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/;
+const PASSWORD_PATTERN = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+const NICKNAME_PATTERN = /^(?=.*[가-힣]{2,}|[a-zA-Z]{4,})[a-zA-Z가-힣0-9]+$/;
+//(?=.*[가-힣])[가-힣a-zA-Z]{3,}|
 
 async function formValidity(form) {
     let inputs = form.find('input');
@@ -36,96 +33,70 @@ async function inputValidity(input) {
     return status;
 }
 
-// function inputValidity(input) {
-//     let id = input.attr('id');
-//     let value = input.val();
-//     let feedback = input.closest('.input-area').find('.feedback');
-//
-//     let [status, message] = validators[id](value);
-//
-//     input.attr('class', `form-control input-${status}`);
-//     feedback.attr('class', `feedback feedback-${status}`).text(message);
-//
-//     return status;
-// }
-
 const validators = {
-    "login-userId": async function (value) {
-            if (!value) {
+    "login-userId": async function (userId) {
+            if (!userId) {
                 return ["invalid", '아이디를 입력해 주세요.'];
             }
-            if (!USERID_PATTERN.test(value)) {
+            if (!USERID_PATTERN.test(userId)) {
                 return ["invalid", '아이디는 6자리 이상 영문과 숫자만 입력 가능합니다.'];
             }
             return ["valid", ''];
         },
-        "login-password": async function (value) {
-            if (!value) {
+        "login-password": async function (password) {
+            if (!password) {
                 return ["invalid", '비밀번호를 입력해 주세요.'];
             }
-            if (!PASSWORD_PATTERN.test(value)) {
+            if (!PASSWORD_PATTERN.test(password)) {
                 return ["invalid", '비밀번호는 8자리 이상 영문, 숫자, 특수문자를 모두 포함해야 합니다.'];
             }
             return ["valid", ''];
         },
-    "signup-userId": async function (value) {
-        if (!value) {
+    "signup-userId": async function (userId) {
+        if (!userId) {
             return ["invalid", '아이디를 입력해 주세요.'];
         }
-        if (!USERID_PATTERN.test(value)) {
+        if (!USERID_PATTERN.test(userId)) {
             return ["invalid", '아이디는 6자리 이상 영문과 숫자만 입력 가능합니다.'];
         }
-        try {
-            const response = await $.ajax({
-                url: "/api/user/check-duplicate-userId",
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({userId: value})
-            });
+        const response = await sendAjax("/api/user/check-duplicate-userId", {userId: userId});
 
             if (!response.status) {
                 return ["invalid", response.message];
             } else {
                 return ["valid", response.message];
             }
-        } catch (error) {
-            return ["invalid", '서버 오류가 발생했습니다.'];
-        }
     },
-    "signup-password": async function (value) {
-        if (!value) {
+    "signup-password": async function (password) {
+        if (!password) {
             return ["invalid", '비밀번호를 입력해 주세요.'];
         }
-        if (!PASSWORD_PATTERN.test(value)) {
-            return ["invalid", '비밀번호는 8자리 이상 영문, 숫자, 특수문자를 모두 포함해야 합니다.'];
+        if (!PASSWORD_PATTERN.test(password)) {
+            return ["invalid", '비밀번호는 8자리 이상 영문, 숫자, 특수문자를 포함해야 합니다.'];
         }
-        return ["valid", ''];
+        return ["valid", '사용 가능한 비밀번호입니다.'];
     },
-    "signup-confirmPassword": async function (value) {
+    "signup-confirmPassword": async function (confirmPassword) {
         let password = $('#signup-password').val();
-        if (password !== value) {
-            return ["invalid", '비밀번호가 일치하지 않습니다.'];
+        if (password !== confirmPassword) {
+            return ["invalid", '비밀번호와 일치하지 않습니다.'];
         }
-        return ["valid", ''];
+        return ["valid", '비밀번호와 일치합니다.'];
     },
-    "signup-nickname": async function (value) {
-        if (!value) {
-            return ["invalid", '닉네임을 입력해 주세요.'];
+    "signup-nickname": async function (nickname) {
+        if (!nickname) {
+            return ["invalid", '별명을 입력해 주세요.'];
         }
-        if (!NICKNAME_PATTERN.test(value)) {
-            return ["invalid", '닉네임은 2자리 이상 한글 또는 4자리 이상 영문만 입력 가능합니다.'];
+        if (!NICKNAME_PATTERN.test(nickname)) {
+            return ["invalid", '별명은 한글 2자 이상, 영문 4자 이상이어야 합니다.'];
         }
 
-        try {
-            let result = await sendAjax("/api/user/check-duplicate-nickname", {nickname: value});
-
-            if (result.status) {
-                return ["valid", result.message];
-            } else {
-                return ["invalid", result.message];
-            }
-        } catch (error) {
-            return ["invalid", '서버 오류가 발생했습니다.'];
+        const response = await sendAjax("/api/user/check-duplicate-nickname", {nickname: nickname});
+        if (response.status) {
+            return ["valid", response.message];
+        } else {
+            return ["invalid", response.message];
         }
+
     }
 };

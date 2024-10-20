@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    const message = localStorage.getItem('alertMessage');
+    if (message) {
+        alertBox(message);
+        localStorage.removeItem('alertMessage');
+    }
 
 });
 
@@ -109,4 +114,32 @@ function infoBox(message) {
 // warningBox 생성 함수
 function warningBox(message) {
     createBox(message, 'warning');
+}
+
+function navigateToPageWithAlert(name, message) {
+    localStorage.setItem('alertMessage', message);
+    window.location.href = '/' + name;
+}
+
+function historyBackWithAlert(message) {
+    localStorage.setItem('alertMessage', message);
+    if ('referrer' in document) {
+        window.location = document.referrer;
+    } else {
+        window.history.back();
+    }
+}
+
+function logout() {
+    sendAjax('/api/user/logout', {})
+        .then(response => {
+            if (response.status) {
+                navigateToPageWithAlert('', response.message);
+            } else {
+                errorBox(response.message);
+            }
+        })
+        .catch(error => {
+            errorBox(error.message);
+        });
 }

@@ -19,7 +19,7 @@
             </div>
             <div class="offcanvas-body">
                 <ul id="dynamicCategories">
-<!--                    <li>best 쉼터</li>-->
+                    <!--                    <li>best 쉼터</li>-->
                     <li>
                         <form class="search" action="/search" method="get">
                             <input class="search-box" type="text" name="search" placeholder="검색어를 입력해 주세요.">
@@ -28,17 +28,18 @@
                             </button>
                         </form>
                     </li>
-<!--                    검색바 로그인 / 아이콘 을 제외한 기능을 뺏습니다.-->
-<!--                    <li><a href="/addon-request">쉼터 추가</a></li>-->
-<!--                    <li><a href="/shelter-request">기능 추가</a></li>-->
-<!--                    <li><a href="/introduce">임시-메이플스토리</a></li>-->
+
+                    <!--                    검색바 로그인 / 아이콘 을 제외한 기능을 뺏습니다.-->
+                    <!--                    <li><a href="/addon-request">쉼터 추가</a></li>-->
+                    <!--                    <li><a href="/shelter-request">기능 추가</a></li>-->
+                    <!--                    <li><a href="/introduce">임시-메이플스토리</a></li>-->
                 </ul>
             </div>
             <div class="flex-center">
-                <button th:if="${session.isLoggedIn}" onclick="logout()" class="btn  me-2">로그아웃</button>
-                <button th:if="${session.isLoggedIn}" onclick="navigateToPage('info')" class="btn">내정보</button>
-                <button th:unless="${session.isLoggedIn}" onclick="navigateToPage('login')" class="btn  me-2">로그인</button>
-                <button th:unless="${session.isLoggedIn}" onclick="navigateToPage('signup-terms')" class="btn">회원 가입</button>
+                <button th:if="${session.userId}" onclick="logout()" class="btn btn-light me-2">로그아웃</button>
+                <button th:if="${session.userId}" onclick="navigateToPage('info')" class="btn">내정보</button>
+                <button th:unless="${session.userId}" onclick="navigateToPage('login')" class="btn btn-light me-2">로그인</button>
+                <button th:unless="${session.userId}" onclick="navigateToPage('signup-verify')" class="btn">회원 가입</button>
 
             </div>
         </div>

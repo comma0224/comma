@@ -76,6 +76,9 @@ body * {
     box-shadow: var(--base-shadow);
     box-sizing: border-box;
 }
+.d-flex {
+    display: flex;
+}
 
 .flex-center {
     display: flex;

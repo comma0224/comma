@@ -1,10 +1,13 @@
 package com.comma.user.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.PublicKey;
+
 @Controller
-public class ViewController {
+public class UserController {
 
     @GetMapping("/login")
     public String login() {
@@ -44,6 +47,11 @@ public class ViewController {
     @GetMapping("/find-user-info")
     public String findUserInfo() {
         return "user/find-user-info";
+    }
+
+    @GetMapping("/info")
+    public String info() {
+        return "user/info";
     }
 
 }

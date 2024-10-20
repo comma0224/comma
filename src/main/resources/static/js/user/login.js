@@ -26,11 +26,18 @@ $(document).ready(function() {
             password: $('#login-password').val().trim()
         };
 
-        try {
-            const response = await sendAjax('/login', data);
-            response.status ? alertBox(response.message) : errorBox(response.message);
-        } catch (ajaxError) {
-            errorBox(ajaxError, "로그인 과정에서 오류가 발생했습니다. 다시 시도해 주세요.");
-        }
+
+        sendAjax('/api/user/login', data)
+            .then(function(response) {
+                if(response.status) {
+                    historyBackWithAlert(response.message);
+
+                }else {
+                    errorBox(response.message);
+                }
+            })
+            .catch(function(ajaxError) {
+                errorBox(ajaxError, "로그인 과정에서 오류가 발생했습니다. 다시 시도해 주세요.");
+            });
     });
 });

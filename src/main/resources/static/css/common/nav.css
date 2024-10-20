@@ -78,6 +78,7 @@
     align-items: center;
     border:5px solid var(--color-main-puple1);
 }
+
 .search-box::placeholder{
     color: var(--color-main-puple1);
     opacity: 50%;

@@ -5,7 +5,6 @@ $(document).ready(function() {
         try {
             const isValid = await formValidity($('#signup'));
             if (!isValid) {
-                errorBox("폼 유효성 검사에 실패했습니다. 입력 내용을 확인해 주세요.");
                 return;
             }
         } catch (validationError) {
@@ -19,11 +18,17 @@ $(document).ready(function() {
             nickname: $('#signup-nickname').val().trim()
         };
 
-        try {
-            const response = await sendAjax('/api/user/signup', data);
-            response.status ? alertBox(response.message) : errorBox(response.message);
-        } catch (ajaxError) {
-            errorBox(ajaxError, "로그인 과정에서 오류가 발생했습니다. 다시 시도해 주세요.");
-        }
+        sendAjax('/api/user/signup', data)
+            .then(function(response) {
+                if(response.status) {
+                    navigateToPageWithAlert('', response.message);
+                }else {
+                    errorBox(response.message);
+                }
+            })
+            .catch(function(ajaxError) {
+                errorBox(ajaxError, "로그인 과정에서 오류가 발생했습니다. 다시 시도해 주세요.");
+            });
+
     });
 });
