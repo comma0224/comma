@@ -13,6 +13,11 @@ $(document).ready(function() {
         alert("네이버 로그인(구현 예정)");
     });
 
+    $('.toggle-password').click(function () {
+        $('#login-password').attr('type', $('#login-password').attr('type') === 'password' ? 'text' : 'password');
+
+    })
+
 
 
     $('#login-btn').click(async function() {
