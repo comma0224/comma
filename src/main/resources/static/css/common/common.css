@@ -70,7 +70,7 @@ body * {
 }
 
 .area {
-    background: #fff;
+    background: #fafafa;
     border: var(--base-border);
     border-radius: var(--base-border-radius);
     box-shadow: var(--base-shadow);
@@ -83,6 +83,16 @@ body * {
 .flex-center {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+.flex-space-start {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.flex-space-end {
+    display: flex;
+    justify-content: end;
     align-items: center;
 }
 
@@ -99,6 +109,8 @@ body * {
 
 .page-title {
     margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .text-danger {
@@ -415,6 +427,12 @@ body * {
 .mt-5 {
     margin-top: 3rem !important;
 }
+.mt-5-5{
+    margin-top: 5rem !important;
+}
+.mt-6 {
+    margin-top: 6rem !important;
+}
 
 .mt-auto {
     margin-top: auto !important;
@@ -610,6 +628,9 @@ body * {
 
 .pt-5 {
     padding-top: 3rem !important;
+}
+.pt-6 {
+    padding-top: 5rem !important;
 }
 
 .pe-0 {

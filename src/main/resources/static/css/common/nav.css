@@ -64,7 +64,7 @@
     height: 40px;
 }
 .brand-logo {
-    content: url(/image/oauth/logo.svg);
+    content: url(/image/logo.svg);
     height: 40px;
 }
 .search {
