@@ -176,3 +176,26 @@
     cursor: pointer;
     background-color: var(--color-main-puple1) !important;
 }
+/* 여기 부터는 인증 창 */
+.all-check{
+    width: 830px;
+}
+.title-input{
+    font-size: 1.5rem;
+}
+.check-title{
+    display: flex;
+    align-items: center;
+    font-size:  1.5rem;
+    gap: 1rem;
+}
+.check-title  span{
+    color: var(--color-main-puple1) !important;
+}
+.textBox{
+    height: 150px;
+    width: calc(830px - 2rem);
+    border: 1px solid var(--color-main-puple1);
+    border-radius: 1rem;
+    padding: 1rem;
+}

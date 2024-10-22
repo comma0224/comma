@@ -4,29 +4,56 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout}">
 
-<!--<th:block layout:fragment="css">-->
-<!--    <link rel="stylesheet" th:href="@{/css/user/signup-terms.css}">-->
-<!--</th:block>-->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/user/input.css}">
+</th:block>
 
-<!--<th:block layout:fragment="script">-->
-<!--    <script th:src="@{/js/user/signup-terms.js}"></script>-->
-<!--</th:block>-->
+<th:block layout:fragment="script">
+    <script th:src="@{/js/user/signup-terms.js}"></script>
+</th:block>
 
 <body>
 <div layout:fragment="content">
-        <div class="area mt-4 p-4 w-100">
-            <h1 class="page-title">회원가입 - 동의</h1>
-            동의 내용
-            <textarea class="testBox2">
-                1. 개인정보 수집 및 이용 동의
-                2. 서비스 이용약관 동의
-                3. 위치기반 서비스 이용약관 동의
-                4. 마케팅 정보 수신 동의
-            </textarea>
+        <div class="area  p-4 w-100 input-area pt-6 pb-5">
+            <div class="login-border input-area">
+                <div class="page-title title-input">회원가입 - 동의</div>
+                <div class="check-title all-check">
+                    <p><span class="">[ 전체 ]</span>전체 동의하기</p>
+                    <input class="checkbox" type="checkbox" id="">
+                </div>
+                <div class="">
+                    <div class="check-title">
+                        <p><span>[ 필수 ]</span>개인정보 수집 및 이용</p>
+                        <input class="checkbox" type="checkbox" id="">
+                    </div>
+                    <div class="textBox">
+                        개인정보 수집 이용
+                    </div>
+                </div>
+                <div class="">
+                    <div class="check-title">
+                        <p><span>[ 필수 ]</span>컴마 이용약관</p>
+                        <input class="checkbox" type="checkbox" id="">
+                    </div>
+                    <div class="textBox">
+                        컴마 이용약관
+                    </div>
+                </div>
+                <div class="">
+                    <div class="check-title">
+                        <p><span>[ 선택 ]</span>실명 인증된 아이디 가입</p>
+                        <input class="checkbox" type="checkbox" id="">
+                    </div>
+                    <div class="textBox">
+                        실명 인증된 아이디 가입
+                    </div>
+                </div>
 
-            <form th:action="@{/signup-credentials}" method="get">
-                <button type="submit">다음</button>
-            </form>
+
+                <form th:action="@{/signup-credentials}" method="get" class="pt-6">
+                    <button id="join-btn"  class="btn oauth-box">다음으로</button>
+                </form>
+            </div>
         </div>
 </div>
 </body>
