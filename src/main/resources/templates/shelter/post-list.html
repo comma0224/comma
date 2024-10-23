@@ -11,16 +11,51 @@
 <th:block layout:fragment="script">
     <script th:src="@{/js/shelter/shelter.js}"></script>
     <script th:src="@{/js/shelter/post-list.js}"></script>
-
+    <script>
+        var $countPosts = [[${countPosts}]];
+        var $tagKey = [[${tagKey}]];
+        var $type = '[[${type}]]';
+        var $text = '[[${text}]]';
+        var $page = [[${page}]];
+    </script>
 </th:block>
 
 <body>
 <div layout:fragment="content">
     <div class="area m-2">
-        태그 리스트  / <button class="location" th:data-location="${shelter.url}+'/write'">글작성</button>
+        <span class="tag" data-tagkey="0">전체</span>
+        <span class="tag" th:each="item : ${tag}" th:data-tagkey="${item.tagKey}" th:text="${item.title}"></span>
+        <button class="location" th:data-location="${shelter.url + '/' + categoryKey + '/write'}">글작성</button>
     </div>
     <div class="area m-2">
-        게시글 리스트
+        <div>
+            <span> 제목</span>
+            <span> 작성자</span>
+            <span> 작성일</span>
+            <span> 조회수</span>
+            <span> 좋아요</span>
+        </div>
+        <div class="location" th:each="post : ${posts}" th:data-location="${shelter.url + '/' + categoryKey + '/' + post.postKey}">
+            <span th:text="${post.tagTitle}"></span>
+            <span th:text="${post.title}"></span>
+            <span th:text="${post.commentCount}"></span>
+            <span th:text="${post.nickname}"></span>
+            <span th:text="${post.createdAt}"></span>
+            <span th:text="${post.views}"></span>
+            <span th:text="${post.postLikeCount}"></span>
+
+        </div>
+        <div id="pages"></div>
+        <div id="search">
+            <select id="type">
+                <option value="title">제목</option>
+                <option value="nickname">닉네임</option>
+            </select>
+            <input type="text" id="text">
+
+            <button id="searchButton">검색</button>
+        </div>
+
     </div>
 </div>
 </body>

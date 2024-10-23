@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+
+<!--<th:block layout:fragment="css">-->
+<!--    <link rel="stylesheet" th:href="@{/css/common.css}">-->
+<!--</th:block>-->
+
+<!--<th:block layout:fragment="script">-->
+<!--    <script th:src="@{/js/common.js}"></script>-->
+<!--</th:block>-->
+
+<body>
+<div layout:fragment="content">
+어드민페이지
+    <button onclick="location.href='admin/admin-management'">어드민 관리</button>
+    <button onclick="location.href='admin/user-management'">유저 관리</button>
+    <button onclick="location.href='admin/shelter-management'">쉼터 관리</button>
+    <button onclick="location.href='admin/badge-management'">뱃지 관리</button>
+    <button onclick="location.href='admin/report-management'">신고 관리</button>
+
+
+
+
+
+
+</div>
+</body>
+</html>

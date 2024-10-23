@@ -2,68 +2,6 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layout}">
-
-<!--<th:block layout:fragment="css">-->
-<!--    <link rel="stylesheet" th:href="@{/css/common.css}">-->
-<!--</th:block>-->
-
-<th:block layout:fragment="script">
-    <script th:src="@{/js/shelter/shelter.js}"></script>
-</th:block>
-
-<body>
-<div layout:fragment="content">
-    <div class="d-flex mt-4">
-        <div class="area w-25 m-2">
-
-            <div th:if="${session.userKey}">
-                <div th:text="${user.nickname}">user.nickname</div>
-                <div th:text="'레벨: ' + ${user.level}">user.level</div>
-                <div th:text="'경험치: ' + ${user.exp}">user.experience</div>
-                <div th:text="'캐쉬: ' + ${user.cash}">user.cash</div>
-                <div th:text="'포인트: ' + ${user.point}">user.points</div>
-                <button onclick="navigateToPage('info')">내정보</button>
-                <button onclick="logout()">로그아웃</button>
-            </div>
-            <div th:unless="${session.userKey}">
-                <button onclick="navigateToPage('login')">로그인</button>
-                <button onclick="navigateToPage('signup-verify')">회원가입</button>
-            </div>
-
-            <th:block th:each="item, iterStat : ${category}">
-                <div th:if="${iterStat.index == 0 or item.titleGroup != category[iterStat.index-1].titleGroup}" th:text="${item.titleGroup}"></div>
-                <div th:text="${item.title}" th:data-location="${item.shelterKey+'/'+item.categoryKey}" class="category">Title</div>
-            </th:block>
-
-            <div th:if="${addon}">추가 기능</div>
-            <th:block th:each="item, iterStat : ${addon}">
-                <div th:text="${item.title}">Title</div>
-            </th:block>
-
-        </div>
-        <div class="w-75">
-            <div class="area m-2">
-                <h1 class="page-title" th:text="${shelter.name}">shelter</h1>
-                커뮤니티 메뉴 수정 버튼
-                <div th:if="${isShelterLike}" class="isShelterLike">♥</div>
-                <div th:unless="${isShelterLike}" class="isShelterLike">♡</div>
-            </div>
-            <div class="area m-2">
-
-            </div>
-        </div>
-    </div>
-    <input type="hidden" id="shelterKey" th:value="${shelter.shelterKey}">
-</div>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/shelter}">
 
 <!--<th:block layout:fragment="css">-->
@@ -72,11 +10,85 @@
 
 <th:block layout:fragment="script">
     <script th:src="@{/js/shelter/shelter.js}"></script>
+    <script th:src="@{/js/shelter/post-content.js}"></script>
+    <script>
+        var $postKey = [[${postKey}]];
+    </script>
 </th:block>
 
 <body>
 <div layout:fragment="content">
     게시글 내용
+    <div th:text="${posts.postKey}"></div>
+    <div th:text="${posts.title}"></div>
+    <div th:text="${posts.views}"></div>
+    <div th:text="${posts.createdAt}"></div>
+    <div th:text="${posts.nickname}"></div>
+    <div th:text="${posts.tagTitle}"></div>
+    <div th:text="${posts.postLikeCount}"></div>
+    <div th:text="${posts.commentCount}"></div>
+    <div th:text="${posts.content}"></div>
+    <div th:text="${posts.userKey}"></div>
+
+    <button th:if="${posts.userKey == session.userKey}"> 게시글 수정 버튼</button>
+    <button th:if="${posts.userKey == session.userKey}"> 게시글 삭제 버튼</button>
+    <div th:if="${isPostLike}" class="isPostLike">♥</div>
+    <div th:unless="${isPostLike}" class="isPostLike">♡</div>
+
+    <button class="report"> 게시글 신고 버튼</button>
+
+    유저 상세정보
+    <div th:text="${users.userKey}"></div>
+    <div th:text="${users.level}"></div>
+    <div th:text="${users.exp}"></div>
+    <div th:text="${users.requireExp}"></div>
+    <div th:text="${users.cash}"></div>
+    <div th:text="${users.point}"></div>
+    <div th:text="${users.nickname}"></div>
+
+    유저 뱃지
+    <div th:each="item : ${userBadges}">
+        <span th:text="${item.userBadgeKey}"></span>
+        <span th:text="${item.badgeKey}"></span>
+        <span th:text="${item.userKey}"></span>
+        <span th:text="${item.name}"></span>
+        <span th:text="${item.file}"></span>
+        <span th:text="${item.tier}"></span>
+        <object type="image/svg+xml" th:data="${'/image/badge/'+ item.tier + '/' + item.file}" width="32px" height="32px">
+            Your browser does not support SVG
+        </object>
+    </div>
+    댓글작성
+    <div class="commentArea">
+        <input type="text" class="content" data-key="0">
+        <button class="comment-btn">댓글작성</button>
+    </div>
+    댓글
+    <div class="comment" th:data-key="${item.commentKey}" th:each="item, itemstat : ${comments}">
+        <span th:text="${item.commentKey}"></span>
+        <span th:text="${item.userKey}"></span>
+        <span th:text="${item.parentCommentKey}"></span>
+        <span th:if="${item.commentKey != item.parentCommentKey}">대댓글</span>
+        <span th:text="${item.content}"></span>
+        <span th:text="${item.createdAt}"></span>
+        <span th:text="${item.commentLikeCount}"></span>
+        <span th:text="${item.nickname}"></span>
+        <button th:if="${item.userKey == session.userKey}"> 댓글 수정 버튼</button>
+        <button th:if="${item.userKey == session.userKey}"> 댓글 삭제 버튼</button>
+
+        <div th:if="${isCommentLikeList[itemstat.index]}" class="isCommentLike">♥</div>
+        <div th:unless="${isCommentLikeList[itemstat.index]}" class="isCommentLike">♡</div>
+
+        <button class="report"> 댓글 신고 버튼</button>
+        <button class="commentReply"> 답글 버튼</button>
+        <div class="commentArea" style="display: none">
+            <input type="text" class="content" th:data-key="${item.commentKey}">
+            <button class="comment-btn">댓글작성</button>
+        </div>
+
+
+
+    </div>
 </div>
 </body>
 </html>

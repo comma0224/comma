@@ -16,9 +16,15 @@
 <body>
 <div layout:fragment="content">
     게시글 작성 화면
+    태그 선택
+    <select id="tag">
+        <option th:each="item : ${tag}" th:value="${item.tagKey}" th:text="${item.title}"></option>
+    </select>
     제목<input type="text" id="title">
     내용<textarea id="content"></textarea>
-    <button class="post-save">저장</button>
+    <button id="post-saveWait">임시저장</button>
+    <button id="post-save">저장</button>
+    <input type="hidden" id="categoryKey" th:value="${categoryKey}">
 </div>
 </body>
 </html>

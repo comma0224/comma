@@ -1,7 +1,8 @@
 package com.comma.user.service;
 
 import com.comma.user.domain.User;
-import com.comma.user.repository.Repository;
+import com.comma.user.domain.Users;
+import com.comma.user.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.Map;
 public class UserService {
 
     @Autowired
-    private Repository userRepository;
+    private UserRepository userRepository;
 
     public boolean isUserIdDuplicate(String userId) {
         return userRepository.existsByUserId(userId);
@@ -25,6 +26,10 @@ public class UserService {
 
     public User getUser(Long userKey) {
         return userRepository.findById(userKey).orElse(null);
+    }
+
+    public Users getUsers(Long userKey) {
+        return userRepository.findUsersByUserKey(userKey);
     }
 
     public User signup(Map<String, String> request) throws Exception {

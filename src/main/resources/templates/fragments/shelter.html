@@ -4,6 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head th:replace="~{fragments/config :: config}"></head>
+<script>
+    var $shelterKey = [[${shelter.shelterKey}]];
+</script>
 
 <body>
 <div th:replace="~{fragments/nav :: nav}"></div>
@@ -17,11 +20,11 @@
         <div class="area w-25 m-2">
 
             <div th:if="${session.userKey}">
-                <div th:text="${user.nickname}">user.nickname</div>
-                <div th:text="'레벨: ' + ${user.level}">user.level</div>
-                <div th:text="'경험치: ' + ${user.exp}">user.experience</div>
-                <div th:text="'캐쉬: ' + ${user.cash}">user.cash</div>
-                <div th:text="'포인트: ' + ${user.point}">user.points</div>
+                <div th:text="${users.nickname}">users.nickname</div>
+                <div th:text="'레벨: ' + ${users.level}">users.level</div>
+                <div th:text="'경험치: ' + ${users.exp + ' / ' + users.requireExp}">users.experience</div>
+                <div th:text="'캐쉬: ' + ${users.cash}">users.cash</div>
+                <div th:text="'포인트: ' + ${users.point}">users.points</div>
                 <button onclick="navigateToPage('info')">내정보</button>
                 <button onclick="logout()">로그아웃</button>
             </div>
@@ -44,7 +47,7 @@
         <div class="w-75">
             <div class="area m-2">
                 <h1 class="page-title location" th:text="${shelter.name}" th:data-location="${shelter.url}">shelter</h1>
-                커뮤니티 메뉴 수정 버튼
+
                 <div th:if="${isShelterLike}" class="isShelterLike">♥</div>
                 <div th:unless="${isShelterLike}" class="isShelterLike">♡</div>
             </div>
@@ -53,7 +56,7 @@
             </th:block>
         </div>
     </div>
-    <input type="hidden" id="shelterKey" th:value="${shelter.shelterKey}">
+
 </div>
 
 <div class="ad-area right">

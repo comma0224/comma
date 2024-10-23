@@ -54,4 +54,8 @@ public class UserController {
         return "user/info";
     }
 
+    @GetMapping("/report")
+    public String report() {
+        return "user/report";
+    }
 }

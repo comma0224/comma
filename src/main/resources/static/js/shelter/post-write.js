@@ -1,14 +1,17 @@
 $(document).ready(function () {
     $('#post-save').click(function() {
        let data = {
-           title: $('#post-title').val().trim(),
-           content: $('#post-content').val().trim()
+           title: $('#title').val(),
+           content: $('#content').val(),
+           tagKey: $('#tag').val(),
+           categoryKey: $('#categoryKey').val()
        };
 
        sendAjax('/api/shelter/post-save', data)
            .then(function(response) {
                if(response.status) {
-                   navigateToPageWithAlert('shelter', response.message);
+                   //navigateToPageWithAlert('shelter', response.message);
+                   alertBox(response.message);
                }else {
                    errorBox(response.message);
                }

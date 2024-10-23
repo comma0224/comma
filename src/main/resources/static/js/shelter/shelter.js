@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     $('.isShelterLike').click(function () {
         let isShelterLike = $(this).text() === '♥';
-        let shelterKey = $('#shelterKey').val();
+        let shelterKey = $shelterKey;
 
         let data = {
             shelterKey: shelterKey,
