@@ -100,3 +100,22 @@ const validators = {
 
     }
 };
+//     눈깜빡임 버튼
+$(document).ready(function(){
+    $('.toggle-password').click(function (){
+        const passInput = $(this).siblings('input');
+        const passType = passInput.attr('type');
+
+        if (passType === 'password'){
+            passInput.attr('type', 'text');
+            $(this).hide();
+            $(this).siblings('.toggle-open-eye').show()
+        }
+        else {
+            passInput.attr('type','password');
+            $(this).siblings('.toggle-close-eye').show();
+            $(this).hide();
+        }
+        passInput.val(currentValue);
+    });
+});
