@@ -11,9 +11,9 @@
 }
 
 .navbar-toggler {
-    background: var(--color-white);
+    background: var(--color-main-white);
     border: var(--base-border);
-    border-radius: var(--base-border-radius);
+    /*border-radius: var(--base-border-radius);*/
     width: 2rem;
     height: 2rem;
     padding: 0;

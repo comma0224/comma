@@ -17,7 +17,7 @@
                 </a>
                 <button type="button" class="btn-close" aria-label="Close">&times;</button>
             </div>
-            <div class="offcanvas-body">
+            <div class="offcanvas-body " style="background-color: var(--color-main-white)">
                 <ul id="dynamicCategories">
                     <!--                    <li>best 쉼터</li>-->
                     <li>
@@ -35,7 +35,7 @@
                     <!--                    <li><a href="/introduce">임시-메이플스토리</a></li>-->
                 </ul>
             </div>
-            <div class="flex-center">
+            <div class="flex-center " style="background-color: var(--color-main-white)">
                 <button th:if="${session.userId}" onclick="logout()" class="btn btn-light me-2">로그아웃</button>
                 <button th:if="${session.userId}" onclick="navigateToPage('info')" class="btn">내정보</button>
                 <button th:unless="${session.userId}" onclick="navigateToPage('login')" class="btn btn-light me-2">로그인</button>
