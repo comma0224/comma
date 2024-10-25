@@ -18,11 +18,11 @@ import java.util.Map;
 @RequestMapping("/api/admin")
 public class AdminApiController {
 
-    @Autowired
-    private BadgeService badgeService;
-
     @Value("${file.badgeDir}")
     private String badgeDir;
+
+    @Autowired
+    private BadgeService badgeService;
 
     @PostMapping("/badge-save")
     public HashMap<String, Object> uploadBadge(@RequestParam("name") String name,

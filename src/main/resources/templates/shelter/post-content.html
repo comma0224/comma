@@ -20,18 +20,19 @@
 <div layout:fragment="content">
     게시글 내용
     <div th:text="${posts.postKey}"></div>
-    <div th:text="${posts.title}"></div>
-    <div th:text="${posts.views}"></div>
-    <div th:text="${posts.createdAt}"></div>
-    <div th:text="${posts.nickname}"></div>
-    <div th:text="${posts.tagTitle}"></div>
-    <div th:text="${posts.postLikeCount}"></div>
-    <div th:text="${posts.commentCount}"></div>
-    <div th:text="${posts.content}"></div>
+    <div th:text="${posts.title}"></div>  <!--제목-->
+    <div th:text="${posts.views}"></div>  <!--조회수-->
+    <div th:text="${posts.createdAt}"></div><!--작성일-->
+    <div th:text="${posts.nickname}"></div><!--작성자 별명-->
+    <div th:text="${posts.tagTitle}"></div><!--카테고리 태그-->
+    <div th:text="${posts.postLikeCount}"></div><!--게시글 좋아요 카운트-->
+    <div th:text="${posts.commentCount}"></div><!--게시글 댓글 카운트-->
+    <div th:text="${posts.content}"></div><!--내용-->
     <div th:text="${posts.userKey}"></div>
 
     <button th:if="${posts.userKey == session.userKey}"> 게시글 수정 버튼</button>
     <button th:if="${posts.userKey == session.userKey}"> 게시글 삭제 버튼</button>
+    <!--로그인 유저 게시글 좋아요 여부 isPostLike -->
     <div th:if="${isPostLike}" class="isPostLike">♥</div>
     <div th:unless="${isPostLike}" class="isPostLike">♡</div>
 
@@ -39,12 +40,12 @@
 
     유저 상세정보
     <div th:text="${users.userKey}"></div>
-    <div th:text="${users.level}"></div>
-    <div th:text="${users.exp}"></div>
-    <div th:text="${users.requireExp}"></div>
-    <div th:text="${users.cash}"></div>
-    <div th:text="${users.point}"></div>
-    <div th:text="${users.nickname}"></div>
+    <div th:text="${users.level}"></div> <!--레벨-->
+    <div th:text="${users.exp}"></div> <!--경험치-->
+    <div th:text="${users.requireExp}"></div> <!--다음 레벨까지 필요한 경험치-->
+    <div th:text="${users.cash}"></div> <!--캐쉬-->
+    <div th:text="${users.point}"></div> <!--포인트-->
+    <div th:text="${users.nickname}"></div> <!--작성자 닉네임-->
 
     유저 뱃지
     <div th:each="item : ${userBadges}">
