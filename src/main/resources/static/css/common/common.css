@@ -72,7 +72,7 @@ body * {
     background: #fafafa;
     border: var(--base-border);
     border-radius: var(--base-border-radius);
-    box-shadow: var(--base-shadow);
+    /*box-shadow: var(--base-shadow);*/
     box-sizing: border-box;
 }
 .d-flex {

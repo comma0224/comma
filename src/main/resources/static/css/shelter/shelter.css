@@ -1,6 +1,13 @@
 *{
     text-decoration: none;
 }
+/*쉘터 왼쪽 메뉴 바*/
+.shelter-left-user{
+
+}
+/*쉘터 왼쪽 메뉴 바*/
+
+/*쉘터 내용*/
 .shelter-content-area{
     max-width: 780px !important;
     width: 780px;

@@ -3,6 +3,10 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/shelter/shelter.css}">
+</th:block>
+
 <head th:replace="~{fragments/config :: config}"></head>
 <script>
     var $shelterKey = [[${shelter.shelterKey}]];
@@ -28,7 +32,7 @@
                 <button onclick="navigateToPage('info')">내정보</button>
                 <button onclick="logout()">로그아웃</button>
             </div>
-            <div th:unless="${session.userKey}">
+            <div th:unless="${session.userKey}" class="">
                 <button onclick="navigateToPage('login')">로그인</button>
                 <button onclick="navigateToPage('signup-verify')">회원가입</button>
             </div>
